@@ -21,13 +21,13 @@ namespace Parcial_Moviles
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            // Servicios
+            
             builder.Services.AddHttpClient<IApiService, ApiService>();
 
-            // ViewModels 
+             
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<DetalleViewModel>();
-            // Paginas
+            
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<DetallePage>();
 

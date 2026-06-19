@@ -5,7 +5,7 @@ namespace Parcial_Moviles.ViewModels;
 
 [QueryProperty(nameof(Product), "product")]
 public partial class DetalleViewModel : BaseViewModel
-{   // ViewModel para detalle del producto. 
+{    
     [ObservableProperty]
     private Product? product;
 

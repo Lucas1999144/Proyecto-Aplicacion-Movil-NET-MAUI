@@ -15,7 +15,7 @@ public class ApiService : IApiService
     }
 
     public async Task<List<Product>> GetProductsAsync(CancellationToken ct = default)
-    {   // Manejo de errores a la hora de obtener productos.
+    {   
         try
         {
             var products = await _http.GetFromJsonAsync<List<Product>>("products", ct);
@@ -48,7 +48,7 @@ public class ApiService : IApiService
     }
 
     public async Task<Product?> GetProductByIdAsync(int id, CancellationToken ct = default)
-    {   // Manejo de errores cuando consigo un producto por id. 
+    {   
         try
         {
             return await _http.GetFromJsonAsync<Product>($"products/{id}", ct);

@@ -5,8 +5,6 @@ using Parcial_Moviles.Services;
 using System.Collections.ObjectModel;
 
 namespace Parcial_Moviles.ViewModels;
-// ViewModel principal. Carga prodcutos desde la API, muestra mensajes si hay error o de estado. 
-// Permite navegacion a la vista de detalle de cada producto. 
 public partial class MainViewModel : BaseViewModel
 {
     private readonly IApiService _api;
