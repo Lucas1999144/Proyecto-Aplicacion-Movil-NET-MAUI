@@ -19,15 +19,17 @@ namespace Parcial_Moviles
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
-            
+
             builder.Services.AddHttpClient<IApiService, ApiService>();
 
-             
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "products.db3");
+            builder.Services.AddSingleton(s => new DatabaseService(dbPath));
+
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<DetalleViewModel>();
-            
+
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<DetallePage>();
 

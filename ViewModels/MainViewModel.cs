@@ -8,6 +8,7 @@ namespace Parcial_Moviles.ViewModels;
 public partial class MainViewModel : BaseViewModel
 {
     private readonly IApiService _api;
+    private readonly DatabaseService _db;
     private CancellationTokenSource? _cts;
 
     public ObservableCollection<Product> Products { get; } = new();
@@ -21,9 +22,10 @@ public partial class MainViewModel : BaseViewModel
     [ObservableProperty]
     private string statusMessage = string.Empty;
 
-    public MainViewModel(IApiService api)
+    public MainViewModel(IApiService api, DatabaseService db)
     {
         _api = api;
+        _db = db;
     }
 
     [RelayCommand]
@@ -38,6 +40,7 @@ public partial class MainViewModel : BaseViewModel
         try
         {
             var items = await _api.GetProductsAsync(_cts.Token);
+            await _db.SaveAllProductsAsync(items);
             foreach (var p in items)
                 Products.Add(p);
             StatusMessage = $"{Products.Count} productos cargados.";
@@ -49,8 +52,18 @@ public partial class MainViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            ErrorMessage = ex.Message;
-            StatusMessage = string.Empty;
+            var cached = await _db.GetProductsAsync();  // ← carga desde SQLite si falla
+            if (cached.Count > 0)
+            {
+                foreach (var p in cached)
+                    Products.Add(p);
+                StatusMessage = $"{Products.Count} productos cargados desde caché local.";
+            }
+            else
+            {
+                ErrorMessage = ex.Message;
+                StatusMessage = string.Empty;
+            }
         }
         finally
         {
