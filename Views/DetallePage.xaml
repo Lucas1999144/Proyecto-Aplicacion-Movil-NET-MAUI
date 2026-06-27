@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Parcial_Moviles.ViewModels"
+             x:Class="Parcial_Moviles.Views.DetallePage"
+             Title="{Binding Title}"
+             x:DataType="vm:DetalleViewModel"
+             BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+
+            <Frame BackgroundColor="Beige" Padding="20" HasShadow="True">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="{Binding Product.Title}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding Product.Category}"
+                           FontSize="12"
+                           TextColor="DarkBlue"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="Beige"  Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Descripción"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <Label Text="{Binding Product.Description}"
+                           FontSize="14"
+                           TextColor="DarkBlue" />
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <Frame BackgroundColor="Beige" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Precio"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           TextColor="Black"
+                            />
+                    <Label Text="{Binding Product.Price, StringFormat='${0:F2}'}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="Green" />
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <Button Text="Volver"
+                    Clicked="OnVolverClicked"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="25" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

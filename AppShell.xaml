@@ -1,0 +1,8 @@
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Parcial_Moviles"
+       xmlns:views="clr-namespace:Parcial_Moviles.Views"
+       x:Class="Parcial_Moviles.AppShell">
+
+    <ShellContent Title="Productos" ContentTemplate="{DataTemplate local:MainPage}" Route="main" />
+</Shell>
