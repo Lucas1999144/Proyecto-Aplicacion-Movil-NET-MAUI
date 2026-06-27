@@ -52,7 +52,7 @@ public partial class MainViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            var cached = await _db.GetProductsAsync();  // ← carga desde SQLite si falla
+            var cached = await _db.GetProductsAsync(); 
             if (cached.Count > 0)
             {
                 foreach (var p in cached)
