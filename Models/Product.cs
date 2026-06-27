@@ -16,5 +16,20 @@ namespace Parcial_Moviles.Models
         public string Description { get; set; } = string.Empty; 
         public string Category { get; set; } = string.Empty;    
         public string Image { get; set; } = string.Empty;   
+
+        public bool EsValido()
+        {
+            return !string.IsNullOrWhiteSpace(Title) && Price > 0;
+        }
+
+        public string ObtenerInformacion()
+        {
+            return $"Id: {Id}"
+                + $"\nTitle: {Title}"
+                + $"\nPrice: {Price}"
+                + $"\nDescription: {Description}"
+                + $"\nCategory: {Category}"
+                + $"\nImage: {Image}";
+        }
     }
 }
