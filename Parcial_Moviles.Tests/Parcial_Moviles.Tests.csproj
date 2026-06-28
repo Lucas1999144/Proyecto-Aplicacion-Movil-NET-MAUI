@@ -23,6 +23,7 @@
 	<ItemGroup>
 		<Compile Include="..\Parcial-Moviles\Models\*.cs" Link="Models\%(Filename)%(Extension)" />
 		<Compile Include="..\Parcial-Moviles\Services\DatabaseService.cs" Link="Services\DatabaseService.cs" />
+		<Compile Include="..\Parcial-Moviles\Services\IApiService.cs" Link="Services\IApiService.cs" />
 	</ItemGroup>
 
 </Project>
