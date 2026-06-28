@@ -20,10 +20,10 @@ jobs:
           key: nuget-${{ hashFiles('**/*.csproj') }}
 
       - name: Restaurar dependencias
-        run: dotnet restore Parcial-Moviles.slnx
+        run: dotnet restore Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj
 
       - name: Compilar en Release
-        run: dotnet build Parcial-Moviles.slnx -c Release
+        run: dotnet build Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj -c Release
 
   test:
     needs: build
@@ -41,10 +41,10 @@ jobs:
           key: nuget-${{ hashFiles('**/*.csproj') }}
 
       - name: Restaurar dependencias
-        run: dotnet restore Parcial-Moviles.slnx
+        run: dotnet restore Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj
 
       - name: Ejecutar tests
-        run: dotnet test Parcial-Moviles.slnx --no-build --verbosity normal
+        run: dotnet test Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj --no-build --verbosity normal
 
       - name: Subir artefactos
         uses: actions/upload-artifact@v4
