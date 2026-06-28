@@ -28,6 +28,28 @@ public partial class MainViewModel : BaseViewModel
         _db = db;
     }
 
+    /// <summary>
+    /// Permisos de Runtime para ubicacion por GPS
+    /// </summary>
+    /// <returns></returns>
+    private async Task SolicitarPermisos()
+    {
+        var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+        if (status != PermissionStatus.Granted)
+        {
+            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+        }
+
+        if (status == PermissionStatus.Denied)
+        {
+            ErrorMessage = "Permiso de ubicacion denegado";
+        }
+        else if (status == PermissionStatus.Disabled)
+        {
+            ErrorMessage = "GPS no habilitado para este dispositivo";
+        }
+    }
+
     [RelayCommand]
     private async Task LoadProductsAsync()
     {
@@ -84,6 +106,11 @@ public partial class MainViewModel : BaseViewModel
     private async Task VerDetalle(Product product)
     {
         if (product == null) return;
+
+        /// Vibracion por producto
+        if (Vibration.Default.IsSupported)
+            Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(200));
+
         var parametros = new Dictionary<string, object>
         {
             ["product"] = product
