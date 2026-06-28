@@ -1,0 +1,53 @@
+name: CI - Parcial Moviles II
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj') }}
+
+      - name: Restaurar dependencias
+        run: dotnet restore Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj --ignore-failed-sources
+
+      - name: Compilar en Release
+        run: dotnet build Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj -c Release --no-restore
+
+  test:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj') }}
+
+      - name: Restaurar dependencias
+        run: dotnet restore Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj --ignore-failed-sources
+
+      - name: Ejecutar tests
+        run: dotnet test Parcial_Moviles.Tests/Parcial_Moviles.Tests.csproj --no-build --verbosity normal
+
+      - name: Subir artefactos
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: '**/bin/Release/**'
