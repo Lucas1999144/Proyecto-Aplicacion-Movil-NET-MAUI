@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Parcial_Moviles.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f5f889b24f1f585567283d39b4b4a2ab2a1b193")]
 [assembly: System.Reflection.AssemblyProductAttribute("Parcial_Moviles.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Parcial_Moviles.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
