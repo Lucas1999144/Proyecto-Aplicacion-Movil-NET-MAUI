@@ -49,4 +49,51 @@ public class DatabaseServicesTests
 
         Assert.Null(result);
     }
+
+    /// Validaciones
+    [Fact]
+    public async Task SaveProductsAsync_TituloVacio_LanzaExcept()
+    {
+        var db = crearDb();
+        var product = new Product();
+        product.Id = 001;
+        product.Title = "";
+        product.Price = 100m;
+
+        await Assert.ThrowsAsync<ArgumentException>(() =>
+        db.SaveProductAsync(product));
+    }
+
+    [Fact]
+    public async Task SaveProductsAsync_PrecioNegativo_LanzarExcept()
+    {
+        var db = crearDb();
+        var product = new Product
+        {
+            Id = 002,
+            Title = "Remera",
+            Price = -100m
+        };
+
+        await Assert.ThrowsAsync<ArgumentException>(() =>
+        db.SaveProductAsync(product));
+    }
+
+    [Fact]
+    public async Task SaveProductsAsync_ProductoNulo_LanzarExcept()
+    {
+        var db = crearDb();
+
+        await Assert.ThrowsAsync<ArgumentNullException>(() =>
+        db.SaveProductAsync(null!));
+    }
+
+    [Fact]
+    public async Task GetProductByIdAsync_IdCero_LanzarExcept()
+    {
+        var db = crearDb();
+
+        await Assert.ThrowsAsync<ArgumentException>((() =>
+        db.GetProductByIdAsync(0)));
+    }
 }
