@@ -10,7 +10,6 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-
             <Frame BackgroundColor="Beige" Padding="20" HasShadow="True">
                 <VerticalStackLayout Spacing="5">
                     <Label Text="{Binding Product.Title}"
@@ -25,7 +24,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BackgroundColor="Beige"  Padding="15" HasShadow="True">
+            <Frame BackgroundColor="Beige" Padding="15" HasShadow="True">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Descripción"
                            FontAttributes="Bold"
@@ -37,14 +36,12 @@
                 </VerticalStackLayout>
             </Frame>
 
-
             <Frame BackgroundColor="Beige" Padding="15" HasShadow="True">
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Precio"
                            FontAttributes="Bold"
                            FontSize="16"
-                           TextColor="Black"
-                            />
+                           TextColor="Black" />
                     <Label Text="{Binding Product.Price, StringFormat='${0:F2}'}"
                            FontSize="20"
                            FontAttributes="Bold"
@@ -52,6 +49,17 @@
                 </VerticalStackLayout>
             </Frame>
 
+            <Frame BackgroundColor="Beige" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Ubicación"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <Label Text="{Binding Ubi}"
+                           FontSize="14"
+                           TextColor="DarkBlue" />
+                </VerticalStackLayout>
+            </Frame>
 
             <Button Text="Volver"
                     Clicked="OnVolverClicked"
